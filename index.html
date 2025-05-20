@@ -156,7 +156,7 @@
       const scoreBreakdown = JSON.stringify(scoreMap);
 
       // Display result
-      resultBox.textContent = `${firstName} ${lastName}, your most likely denomination is: ${topDenomination}`;
+      resultBox.textContent = `${firstName} ${lastName}, your most likely denomination is: ${topDenomination}` + "\n✅ Your results have been submitted to our records.";
 
       // Send to Google Sheets via webhook
       fetch(webhookUrl, {
