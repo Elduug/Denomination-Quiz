@@ -156,21 +156,26 @@
       const scoreBreakdown = JSON.stringify(scoreMap);
 
       // Display result
-      resultBox.textContent = `${firstName} ${lastName}, your most likely denomination is: ${topDenomination}` + "\n✅ Your results have been submitted to our records.";
+      resultBox.textContent = `${firstName} ${lastName}, your most likely denomination is: ${topDenomination}` + "
+✅ Your results have been submitted to our records.";
 
       // Send to Google Sheets via webhook
       fetch(webhookUrl, {
-        method: "POST",
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          topDenomination,
-          scores: scoreMap
-        }),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
+  method: "POST",
+  mode: "no-cors",
+  body: JSON.stringify({
+    firstName,
+    lastName,
+    topDenomination,
+    scores: scoreMap
+  })
+})
+.then(() => {
+  console.log("✅ Submission sent to Google Sheets (no-cors mode)");
+})
+.catch(error => {
+  console.error("❌ Error sending to Google Sheets:", error);
+});
     };
   </script>
 </body>
