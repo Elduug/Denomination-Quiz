@@ -38,7 +38,7 @@
   <div class="result" id="result"></div>
 
   <script>
-    const webhookUrl = "https://script.google.com/macros/s/AKfycbxFYipkAoOfpnWr6ewrDROGcZ8hepeeSe6tIIhOtG4oMZ3CsmhdZ6d9sI17xnEWMijo/exec";
+    const webhookUrl = "https://script.google.com/macros/s/AKfycbxghcsBtoGEfyBJJufYBKYHIjrUvMP0Wf2ezEH9X-YGh7NqM-FLUsiOriu91uPzqQfo/exec";
 
     const questions = [
       { q: "What do you believe about the Bible?", a: ["It is the sole authority for faith and practice (Sola Scriptura).", "It is authoritative, but tradition and church teaching also guide us.", "It’s inspired, but not always literal or without error.", "It’s one of many ways God speaks to us."] },
@@ -156,13 +156,12 @@
       const scoreBreakdown = JSON.stringify(scoreMap);
 
       // Display result
-      resultBox.textContent = `${firstName} ${lastName}, your most likely denomination is: ${topDenomination}` + "
-✅ Your results have been submitted to our records.";
+      resultBox.textContent = `${firstName} ${lastName}, your most likely denomination is: ${topDenomination}`;
 
       // Send to Google Sheets via webhook
       fetch(webhookUrl, {
   method: "POST",
-  mode: "no-cors",
+  mode: "no-cors", // 👈 avoid preflight
   body: JSON.stringify({
     firstName,
     lastName,
